@@ -1,10 +1,17 @@
 Locate::Application.routes.draw do
+  resources :authentications
+
+
+  devise_for :users
+
   resources :votes
 
 
   resources :users
 
   root :to => 'users#index'
+  match '/auth/:provider/callback' => 'authentications#create'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
